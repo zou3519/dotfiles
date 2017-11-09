@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-inoremap jk <ESC>             " map jk to esc
+inoremap jk <ESC>
 let mapleader=" "             " map leader to space
 
 " Colors
@@ -19,7 +19,7 @@ set visualbell
 
 set showcmd             " show partial command in status line
 set showmatch           " show matching brackets
-set ignorecase          " do case insensitive matching 
+set ignorecase          " do case insensitive matching
 
 " make TAB = 2 spaces
 set tabstop=2
@@ -40,7 +40,7 @@ nnoremap <S-Tab> :bprevious<CR> " cycle through buffers
 au BufNewFile,BufRead *.cu set filetype=cuda " cuda syntax
 au BufNewFile,BufRead *.cuh set filetype=cuda" cuda syntax
 
-" ==================== Plugin related things. ==================== 
+" ==================== Plugin related things. ====================
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -52,11 +52,20 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'w0rp/ale'
+Plugin 'rakr/vim-one'
+Plugin 'joshdick/onedark.vim'
+Plugin 'icymind/NeoSolarized'
+Plugin 'w0rp/ale'
 Plugin 'christoomey/vim-tmux-navigator'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'qpkorr/vim-bufkill' " Provides :BD for buffer kill
+Plugin 'altercation/vim-colors-solarized'
+if has("nvim")
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'zchee/deoplete-jedi'
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -65,26 +74,73 @@ filetype plugin indent on    " required
 " Easymotion settings
 map <Leader> <Plug>(easymotion-prefix)
 
-" solarized theme
+if has("nvim")
+  let g:deoplete#enable_at_startup=1
+endif
+
+" Use ag if it exists
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" have Ack not jump to the first match by default
+cnoreabbrev ag Ack!
+nnoremap <Leader>a :Ack!<Space>
+
+" Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+" if (has("nvim"))
+"   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+"   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" endif
+"   "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"   "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+"   " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+" if (has("termguicolors"))
+"   set termguicolors
+" endif
+
+" one (atom) theme
 set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme onedark
+
+" solarizek theme
+" let g:solarized_termcolors=256
+" set background=dark
+"colorscheme solarized
 
 " airline theme
-let g:airline_theme='zenburn'
+"let g:airline_theme='zenburn'
+let g:airline_theme='one'
 
 let g:airline#extensions#tabline#enabled=1 " buffers bar
 
 " NERDTree config
 " Open always when entering vi without file
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Shortcut to toggle nerdtree
 map <C-n> :NERDTreeToggle<CR>
 " make NERDTree prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-" ctrlP settings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+" Bindings with fzf.vim
+nmap ; :Buffers<CR>
+nmap <Leader>f :Ag<CR>
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :Tags<CR>
+
+let g:ale_linters = {
+\  'python': ['flake8'],
+\}
+
+set mouse=a
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
+
+map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
+map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
+
+
+
+
