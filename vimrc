@@ -110,7 +110,7 @@ colorscheme onedark
 
 " airline theme
 "let g:airline_theme='zenburn'
-let g:airline_theme='one'
+let g:airline_theme='zenburn'
 
 let g:airline#extensions#tabline#enabled=1 " buffers bar
 
@@ -141,6 +141,6 @@ map <ScrollWheelDown> <C-E>
 map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 
-
-
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
