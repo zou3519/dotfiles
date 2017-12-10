@@ -2,6 +2,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 inoremap jk <ESC>
+xnoremap jk <ESC>
+tnoremap jk <ESC>
 let mapleader=" "             " map leader to space
 
 " Colors
