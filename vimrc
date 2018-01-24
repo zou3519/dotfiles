@@ -2,6 +2,11 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 inoremap jk <ESC>
+xnoremap jk <ESC>
+if has("nvim")
+  tnoremap jk <ESC>
+endif
+
 let mapleader=" "             " map leader to space
 
 " Colors
@@ -128,6 +133,7 @@ nmap ; :Buffers<CR>
 nmap <Leader>f :Ag<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>r :Tags<CR>
+" nmap <Leader>f :call fzf#vim#ag(expand('<cword>'))<CR>
 
 let g:ale_linters = {
 \  'python': ['flake8'],
