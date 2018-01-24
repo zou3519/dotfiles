@@ -49,8 +49,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rakr/vim-one'
 Plugin 'joshdick/onedark.vim'
@@ -111,7 +111,6 @@ colorscheme onedark
 " airline theme
 "let g:airline_theme='zenburn'
 let g:airline_theme='zenburn'
-
 let g:airline#extensions#tabline#enabled=1 " buffers bar
 
 " NERDTree config
@@ -143,4 +142,3 @@ map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
