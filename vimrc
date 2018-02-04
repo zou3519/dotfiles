@@ -144,8 +144,8 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 " Bindings with fzf.vim
-nmap <Leader>c :Buffers<CR>
-nmap <Leader>f :Ag<CR>
+nmap <Leader>f :Buffers<CR>
+"nmap <Leader>a :Ag<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>r :Tags<CR>
 
