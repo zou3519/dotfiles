@@ -1,5 +1,6 @@
 #!/bin/bash
 set -ex
+proxy   # bleh
 pushd ~/pt/master
 git worktree add ../$1
 pushd ../$1
