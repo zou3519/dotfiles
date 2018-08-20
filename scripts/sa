@@ -1,0 +1,2 @@
+source activate \$PWD-env
+export CMAKE_PREFIX_PATH="$(dirname $(which python))/../
