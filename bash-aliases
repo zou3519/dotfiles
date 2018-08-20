@@ -1,0 +1,13 @@
+# alias ag="ag -u"
+alias ag='ag -U --path-to-ignore ~/.ignore'
+
+# added by Miniconda3 installer
+export PATH="/home/rzou/local/miniconda3/bin:$PATH"
+
+# ccache things
+export PATH=~/ccache/lib:$PATH
+export CUDA_NVCC_EXECUTABLE=~/ccache/cuda/nvcc
+
+alias sa="source activate \$PWD-env; CMAKE_PREFIX_PATH=\$(dirname \$(which python))/../"
+alias sd="source deactivate; export CMAKE_PREFIX_PATH=/home/rzou/local/miniconda3"
+export PATH="~/local/scripts/:$PATH"  # for mkenv
