@@ -1,0 +1,5 @@
+set editing-mode vi
+# TODO(rzou): I don't remember what the following things are for
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\C-w": backward-delete-word
