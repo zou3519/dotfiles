@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
-pushd ~/dev/pytorch
-git worktree add ../pytorch-$1
-pushd ../pytorch-$1
+pushd ~/pt/master
+git worktree add ../$1
+pushd ../$1
 mkenv
 git subup
 ctags -R *

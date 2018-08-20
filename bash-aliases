@@ -11,3 +11,19 @@ export CUDA_NVCC_EXECUTABLE=~/ccache/cuda/nvcc
 alias sa="source activate \$PWD-env; CMAKE_PREFIX_PATH=\$(dirname \$(which python))/../"
 alias sd="source deactivate; export CMAKE_PREFIX_PATH=/home/rzou/local/miniconda3"
 export PATH="~/local/scripts/:$PATH"  # for mkenv
+
+# safety measures
+alias cp='cp --backup=numbered'
+alias ln='ln --backup=numbered'
+alias mv='mv -f --backup=numbered'
+
+source ~/dotfiles/scripts/git-prompt.sh
+
+if [ "$color_prompt" = yes ]; then
+  PS1='[\[\033[1;31m\]${PIPESTATUS[@]/#0/\[\033[0m\]\[\033[1;32m\]0\[\033[1;31m\]}\[\033[0m\]] ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(__git_ps1 "(%s) ") \$ '
+else
+  PS1='[\[\033[1;31m\]${PIPESTATUS[@]/#0/\[\033[0m\]\[\033[1;32m\]0\[\033[1;31m\]}\[\033[0m\]] ${debian_chroot:+($debian_chroot)}\u@\h:\w $(__git_ps1 "(%s)") \$ '
+fi
+unset color_prompt force_color_prompt
+
+
