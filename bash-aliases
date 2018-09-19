@@ -12,8 +12,13 @@ alias sa="source activate \$PWD-env; CMAKE_PREFIX_PATH=\$(dirname \$(which pytho
 alias sd="source deactivate; export CMAKE_PREFIX_PATH=/home/rzou/local/miniconda3"
 export PATH="~/local/scripts/:$PATH"  # for mkenv
 
+if [ -z "$PT_ROOT" ]; then
+    echo "Need to set PT_ROOT"
+    exit 1
+fi
+
 pt() {
-    source activate $HOME/pt/$1-env
+    source activate $PT_ROOT/$1-env
 }
 
 # safety measures

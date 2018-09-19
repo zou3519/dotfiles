@@ -1,9 +1,14 @@
 #!/bin/bash
 set -ex
-pushd ~/pt/master
+if [ -z "$STATE" ]; then
+    echo "Need to set STATE"
+    exit 1
+fi
+pushd $PT_ROOT/master
 git worktree add ../$1
 pushd ../$1
-mkenv 2.7
+# $2 is python version. One can do 'feature my-feature 2.7'
+mkenv $2
 git subup
 ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2
 popd
