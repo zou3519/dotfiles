@@ -3,8 +3,8 @@ set -ex
 pushd ~/pt/master
 git worktree add ../$1
 pushd ../$1
-mkenv
+mkenv 2.7
 git subup
-ctags -R *
+ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2
 popd
 popd

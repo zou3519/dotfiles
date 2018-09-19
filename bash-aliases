@@ -12,6 +12,10 @@ alias sa="source activate \$PWD-env; CMAKE_PREFIX_PATH=\$(dirname \$(which pytho
 alias sd="source deactivate; export CMAKE_PREFIX_PATH=/home/rzou/local/miniconda3"
 export PATH="~/local/scripts/:$PATH"  # for mkenv
 
+pt() {
+    source activate $HOME/pt/$1-env
+}
+
 # safety measures
 alias cp='cp --backup=numbered'
 alias ln='ln --backup=numbered'
@@ -26,4 +30,5 @@ else
 fi
 unset color_prompt force_color_prompt
 
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
