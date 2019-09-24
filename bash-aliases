@@ -1,5 +1,5 @@
 # alias ag="ag -u"
-alias ag='ag -U --path-to-ignore ~/.ignore'
+# alias ag='ag -U --path-to-ignore ~/.ignore'
 
 # added by Miniconda3 installer
 export PATH="$HOME/local/miniconda3/bin:$PATH"
@@ -8,8 +8,13 @@ export PATH="$HOME/local/miniconda3/bin:$PATH"
 export PATH=~/ccache/lib:$PATH
 export CUDA_NVCC_EXECUTABLE=~/ccache/cuda/nvcc
 
+alias build_cpu_debug="NO_MKLDNN=1 NO_MIOPEN=1 NO_NNPACK=1 NO_CAFFE2_OPS=1 NO_CUDA=1 DEBUG=1 python setup.py develop"
+alias build_cuda_debug="NO_MKLDNN=1 NO_NNPACK=1 NO_CAFFE2_OPS=1 DEBUG=1 python setup.py develop"
+alias build_cpu="NO_MKLDNN=1 NO_MIOPEN=1 NO_NNPACK=1 NO_CAFFE2_OPS=1 NO_CUDA=1 python setup.py develop"
+alias build_cuda="NO_MKLDNN=1 NO_NNPACK=1 NO_CAFFE2_OPS=1 python setup.py develop"
 alias sa="source activate \$PWD-env; CMAKE_PREFIX_PATH=\$(dirname \$(which python))/../"
 alias sd="source deactivate; export CMAKE_PREFIX_PATH=$HOME/local/miniconda3"
+alias ta="tmux attach -d"
 export PATH="$HOME/local/scripts/:$PATH"  # for mkenv
 
 if [ -z "$PT_ROOT" ]; then

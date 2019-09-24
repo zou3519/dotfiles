@@ -29,6 +29,7 @@ set nohlsearch          " don't highlight matches, too distracting
 au BufNewFile,BufRead *.cu set filetype=cuda  " cuda syntax
 au BufNewFile,BufRead *.cuh set filetype=cuda " cuda syntax
 
+
 " ==================== Various key remaps ====================
 
 " Remap jk to <ESC>
@@ -164,3 +165,6 @@ let g:ale_linters = {
 " Sneak settings
 " let g:sneak#label = 1
 
+" Show trailing whitepace and spaces before a tab:
+:highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$/
