@@ -7,7 +7,7 @@
 # Entry point
 dir=~/dotfiles # dotfiles directory
 olddir=$dir/dotfiles_old # old dotfiles backup directory
-files="vimrc tmux.conf" # list of files/folders to symlink in homedir
+files="vimrc tmux.conf bash_aliases gitconfig" # list of files/folders to symlink in homedir
 
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
