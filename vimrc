@@ -91,6 +91,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'qpkorr/vim-bufkill' " Provides :BD for buffer kill
 if has("nvim")
   Plugin 'Shougo/deoplete.nvim'

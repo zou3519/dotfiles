@@ -13,3 +13,4 @@ git subup
 ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2
 popd
 popd
+cd $PT_ROOT/$1

@@ -8,13 +8,14 @@ export PATH="$HOME/local/miniconda3/bin:$PATH"
 export PATH=~/ccache/lib:$PATH
 export CUDA_NVCC_EXECUTABLE=~/ccache/cuda/nvcc
 
-alias build_cpu_debug="NO_MKLDNN=1 NO_MIOPEN=1 NO_NNPACK=1 NO_CAFFE2_OPS=1 NO_CUDA=1 DEBUG=1 python setup.py develop"
-alias build_cuda_debug="NO_MKLDNN=1 NO_NNPACK=1 NO_CAFFE2_OPS=1 DEBUG=1 python setup.py develop"
-alias build_cpu="NO_MKLDNN=1 NO_MIOPEN=1 NO_NNPACK=1 NO_CAFFE2_OPS=1 NO_CUDA=1 python setup.py develop"
-alias build_cuda="NO_MKLDNN=1 NO_NNPACK=1 NO_CAFFE2_OPS=1 python setup.py develop"
-alias sa="source activate \$PWD-env; CMAKE_PREFIX_PATH=\$(dirname \$(which python))/../"
-alias sd="source deactivate; export CMAKE_PREFIX_PATH=$HOME/local/miniconda3"
+alias build_cpu_debug="type build_cpu_debug; USE_FBGEMM=0 USE_QNNPACK=0 USE_MKLDNN=0 USE_MIOPEN=0 USE_NNPACK=0 BUILD_CAFFE2_OPS=0 USE_CUDA=0 DEBUG=1 python setup.py develop"
+alias build_cuda_debug="type build_cuda_debug; USE_FBGEMM=0 USE_QNNPACK=0 USE_MKLDNN=0 USE_NNPACK=0 BUILD_CAFFE2_OPS=0 DEBUG=1 python setup.py develop"
+alias build_cpu="type build_cpu; USE_FBGEMM=0 USE_QNNPACK=0 USE_MKLDNN=0 USE_MIOPEN=0 USE_NNPACK=0 BUILD_CAFFE2_OPS=0 USE_CUDA=0 python setup.py develop"
+alias build_cuda="type build_cuda; USE_FBGEMM=0 USE_QNNPACK=0 USE_MKLDNN=0 USE_NNPACK=0 BUILD_CAFFE2_OPS=0 python setup.py develop"
+alias sa="type sa; conda activate \$PWD-env; CMAKE_PREFIX_PATH=\$(dirname \$(which python))/../"
+alias sd="type sd; conda deactivate; export CMAKE_PREFIX_PATH=''"
 alias ta="tmux attach -d"
+alias cr="ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2"
 export PATH="$HOME/local/scripts/:$PATH"  # for mkenv
 
 if [ -z "$PT_ROOT" ]; then
