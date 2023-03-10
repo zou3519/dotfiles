@@ -9,7 +9,8 @@ git worktree add ../$1
 pushd ../$1
 # $2 is python version. One can do 'feature my-feature 2.7'
 mkenv $2
-git subup
+git submodule sync
+git submodule update --init --recursive --jobs 0
 ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2
 popd
 popd

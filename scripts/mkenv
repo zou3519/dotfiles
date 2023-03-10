@@ -1,6 +1,5 @@
 #!/bin/bash
 PYTHON_VERSION=${1:-3}
-conda create -y -p $PWD-env python=$PYTHON_VERSION numpy pyyaml mkl mkl-include setuptools cmake cffi pytest ipython
+conda create -y -p $PWD-env python=$PYTHON_VERSION astunparse numpy ninja pyyaml setuptools cmake cffi typing_extensions future six requests dataclasses mkl mkl-include ipython expecttest
 conda activate $PWD-env
-pip install ninja
 pip install ghstack

@@ -73,6 +73,10 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+if (has("nvim"))
+  let g:python3_host_prog='/raid/rzou/pt/binaries4-env/bin/python'
+endif
+
 " ==================== Plugin related things. ====================
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -169,3 +173,5 @@ let g:ale_linters = {
 " Show trailing whitepace and spaces before a tab:
 :highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$/
+
+autocmd FileType cu,cpp,py autocmd BufWritePre <buffer> %s/\s\+$//e
