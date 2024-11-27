@@ -1,10 +1,12 @@
 #!/bin/bash
 set -ex
-pushd ~/pt/master
-git worktree add ../$1
-pushd ../$1
-mkenv 2.7
+cd ~/dev/main/pytorch
+git worktree prune
+git worktree add ../../$1/pt-$1
+cd ../../$1
+mkenv $2
+cd pt-$1
+git pull --rebase upstream viable/strict
+git submodule sync --recursive
 git subup
 ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2
-popd
-popd

@@ -1,0 +1,11 @@
+#!/bin/bash
+set -ex
+hash="$(cat .github/ci_commit_pins/vision.txt)"
+pushd ../
+if [ ! -d vision ]; then
+git clone git@github.com:pytorch/vision.git
+fi
+pushd vision
+git fetch
+git co $hash
+python setup.py develop

@@ -1,0 +1,5 @@
+#!/bin/bash
+pushd ~/dev/main/pytorch
+git worktree remove -f ~/dev/$1/pt-$1
+git branch -D $1
+rm -rf ~/dev/$1

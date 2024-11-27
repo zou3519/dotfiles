@@ -1,16 +1,40 @@
 # alias ag="ag -u"
 alias ag='ag -U --path-to-ignore ~/.ignore'
 
-# added by Miniconda3 installer
-export PATH="/home/rzou/local/miniconda3/bin:$PATH"
+# # added by Miniconda3 installer
+# export PATH="/home/rzou/local/miniconda3/bin:$PATH"
 
 # ccache things
-export PATH=~/ccache/lib:$PATH
-export CUDA_NVCC_EXECUTABLE=~/ccache/cuda/nvcc
+export CMAKE_C_COMPILER_LAUNCHER=ccache
+export CMAKE_CXX_COMPILER_LAUNCHER=ccache
+export CMAKE_CUDA_COMPILER_LAUNCHER=ccache
 
-alias sa="source activate \$PWD-env; CMAKE_PREFIX_PATH=\$(dirname \$(which python))/../"
-alias sd="source deactivate; export CMAKE_PREFIX_PATH=/home/rzou/local/miniconda3"
-export PATH="~/local/scripts/:$PATH"  # for mkenv
+pt_default_flags='MAX_JOBS=96'
+
+alias build_cpu_debug="type build_cpu_debug; $pt_default_flags USE_CUDA=0 DEBUG=1 python setup.py develop"
+alias build_cuda_debug="type build_cuda_debug; $pt_default_flags DEBUG=1 python setup.py develop"
+alias build_cpu="type build_cpu; $pt_default_flags USE_CUDA=0 python setup.py develop"
+alias build_cpu_install="type build_cpu_install; $pt_default_flags USE_CUDA=0 python setup.py install"
+alias build_cuda="type build_cuda; $pt_default_flags python setup.py develop"
+alias build_cuda_symbol="type build_cuda; $pt_default_flags REL_WITH_DEB_INFO=1 python setup.py develop"
+
+alias bcpud="build_cpu_debug"
+alias bcudad="build_cuda_debug"
+alias bcpu="build_cpu"
+alias bcuda="build_cuda"
+
+alias gs="git subup"
+
+alias chenv="type chenv; conda activate /scratch/rzou/pt/\$1-env; export CMAKE_PREFIX_PATH=\$(dirname \$(which python))/../"
+alias ta="tmux attach -d"
+alias cr="ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2"
+export PATH="$HOME/local/scripts/:$PATH"  # for mkenv
+alias gpr="git pull --rebase upstream viable/strict"
+alias sa="conda activate \$PWD/env; export CMAKE_PREFIX_PATH=\${CONDA_PREFIX:-\"\$(dirname \$(which conda))/../\"}"
+alias sap="pushd ../; sa; popd"
+alias sd="conda deactivate; export CMAKE_PREFIX_PATH=/home/rzou/local/miniconda3"
+alias refresh_ctags="type refresh_ctags; ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2"
+export PATH="~/dotfiles/scripts/:$PATH"  # for mkenv
 
 pt() {
     source activate $HOME/pt/$1-env
@@ -30,5 +54,6 @@ else
 fi
 unset color_prompt force_color_prompt
 
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda-12.1/bin/:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH
 

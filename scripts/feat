@@ -1,0 +1,14 @@
+#!/bin/bash
+set -ex
+pushd ~/dev
+mkdir $1
+popd
+pushd ~/dev/main/pytorch
+git worktree add -b $1 ~/dev/$1/pt-$1
+popd
+pushd ~/dev/$1
+mkenv $2
+popd
+cd ~/dev/$1/pt-$1
+git subup
+ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2

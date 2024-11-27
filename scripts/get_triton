@@ -1,0 +1,11 @@
+#!/bin/bash
+set -ex
+hash="$(cat .github/ci_commit_pins/triton.txt)"
+pushd ../
+if [ ! -d triton ]; then
+git clone git@github.com:triton-lang/triton.git
+fi
+pushd triton
+git fetch
+git co $hash
+pip install -e python
