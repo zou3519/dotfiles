@@ -3,7 +3,7 @@ set -ex
 pushd ~/dev
 mkdir $1
 popd
-pushd ~/dev/main/pytorch
+pushd ~/dev/main/pt-main
 git worktree add -b $1 ~/dev/$1/pt-$1
 popd
 pushd ~/dev/$1

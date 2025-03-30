@@ -14,6 +14,7 @@ pt_default_flags='MAX_JOBS=96'
 alias build_cpu_debug="type build_cpu_debug; $pt_default_flags USE_CUDA=0 DEBUG=1 python setup.py develop"
 alias build_cuda_debug="type build_cuda_debug; $pt_default_flags DEBUG=1 python setup.py develop"
 alias build_cpu="type build_cpu; $pt_default_flags USE_CUDA=0 python setup.py develop"
+alias build_cpu_symbol="type build_cpu_symbol; $pt_default_flags USE_CUDA=0 REL_WITH_DEB_INFO=1 python setup.py develop"
 alias build_cpu_install="type build_cpu_install; $pt_default_flags USE_CUDA=0 python setup.py install"
 alias build_cuda="type build_cuda; $pt_default_flags python setup.py develop"
 alias build_cuda_symbol="type build_cuda; $pt_default_flags REL_WITH_DEB_INFO=1 python setup.py develop"
@@ -55,5 +56,6 @@ fi
 unset color_prompt force_color_prompt
 
 export PATH=/usr/local/cuda-12.1/bin/:$PATH
+# export PATH=/home/rzou/local/ccache/cuda/:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH
 
