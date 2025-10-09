@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ex
-PYTHON_VERSION=${1:-3}
+PYTHON_VERSION=${1:-3.12}
 conda create -y -p $PWD/env python=$PYTHON_VERSION numpy pyyaml setuptools cmake cffi pytest ipython ninja rust
 source ~/local/miniconda3/bin/activate $PWD/env
-pip install mkl-static mkl-include lintrunner typing_extensions expecttest pytest-xdist
+pip install mkl-static mkl-include lintrunner typing_extensions expecttest pytest-xdist uv pre-commit six

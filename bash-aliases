@@ -9,7 +9,7 @@ export CMAKE_C_COMPILER_LAUNCHER=ccache
 export CMAKE_CXX_COMPILER_LAUNCHER=ccache
 export CMAKE_CUDA_COMPILER_LAUNCHER=ccache
 
-pt_default_flags='MAX_JOBS=96'
+pt_default_flags='MAX_JOBS=96 USE_FBGEMM=0'
 
 alias build_cpu_debug="type build_cpu_debug; $pt_default_flags USE_CUDA=0 DEBUG=1 python setup.py develop"
 alias build_cuda_debug="type build_cuda_debug; $pt_default_flags DEBUG=1 python setup.py develop"
@@ -37,6 +37,9 @@ alias sd="conda deactivate; export CMAKE_PREFIX_PATH=/home/rzou/local/miniconda3
 alias refresh_ctags="type refresh_ctags; ctags -R --exclude=third_party --exclude=torch/lib --exclude=build --exclude=caffe2"
 export PATH="~/dotfiles/scripts/:$PATH"  # for mkenv
 
+alias pbuild='CCACHE_NOHASHDIR="true" pip install -e . --no-build-isolation -v'
+alias install_stable='uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128'
+
 pt() {
     source activate $HOME/pt/$1-env
 }
@@ -55,7 +58,17 @@ else
 fi
 unset color_prompt force_color_prompt
 
-export PATH=/usr/local/cuda-12.1/bin/:$PATH
+export PATH=/usr/local/cuda-12.9/bin/:$PATH
 # export PATH=/home/rzou/local/ccache/cuda/:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-12.9/lib64:$LD_LIBRARY_PATH
 
+function tlp {
+  rm -rf ~/tmp/trace_logs/*
+  TORCH_TRACE=~/tmp/trace_logs "$@"
+  tlparse ~/tmp/trace_logs --slug $USER/custom --overwrite-manifold
+}
+
+# envvars
+export HF_HUB_DISABLE_XET=1
+
+alias install_stable_torch="uv pip install torch==2.8.0 torchvision --index-url https://download.pytorch.org/whl/cu129"
